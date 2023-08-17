@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.blogdemo.mapper.CommentMapper">
+    <resultMap id="CommentMap" type="com.example.blogdemo.pojo.Comment">
+        <result property="articleId" column="article_id"></result>
+        <result property="commentTime" column="comment_time"></result>
+        <result property="commentId" column="comment_id"></result>
+    </resultMap>
+    <insert id="add">
+        insert into comment (uid,article_id,content,comment_time)
+        values (#{uid},#{articleId},#{content},#{commentTime})
+    </insert>
+    <update id="add1" parameterType="com.example.blogdemo.pojo.Comment">
+        update comment
+        set likes=(#{likes})
+        where comment_id=#{commentId}
+    </update>
+    <select id="selectByArticleId" resultMap="CommentMap">
+        select *
+        from comment
+        where article_id=#{articleId}
+    </select>
+</mapper>
