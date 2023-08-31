@@ -60,6 +60,8 @@
                 点赞数{{article.likes}}
                 <i class="iconfont icon-icon-test"></i>
                 收藏数{{article.favorites}}
+                <i class="iconfont icon-icon-test"></i>
+                作者{{user1.username}}
             </div>
             <div>{{article.content}}</div>
             <el-form ref="comment" :model="comment">
@@ -155,10 +157,17 @@
                     ss:"",
                     len:"",
                     dd:"",
-                }
+                },
 
+                users:[{
+                    uid:"",
+                    username:"",
+                }],
 
-
+                user1:{
+                    uid:"",
+                    username:"",
+                },
 
             }
 
@@ -324,7 +333,23 @@
                 })
             },
 
-
+            show5(){
+                axios.get("/user/selectAll1").then(res=>{
+                    if(res.data.code==200){
+                        this.users=res.data.data
+                        this.show();
+                        var len=this.users.length
+                        for(var i=0;i<len;i++){
+                            if(this.users[i].uid==this.article.uid){
+                                this.user1.username=this.users[i].username;
+                                break;
+                            }
+                        }
+                    }else{
+                        this.$message.error(res.data.message)
+                    }
+                })
+            },
 
 
 
@@ -337,6 +362,7 @@
                 this.show2();
                 this.show3();
                 this.show4();
+                this.show5();
             }
     })
 </script>

@@ -32,13 +32,22 @@
 <div id="app">
     <el-container>
         <el-header>
+            <el-row>
+            <el-col :span="6">
+                <el-breadcrumb separator=" ">
+                    <el-breadcrumb-item :to="{ path: '/' }"><a href="index.html">首页</a></el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/' }"><a href="MyInfo.html">个人中心</a></el-breadcrumb-item>
+                    <el-breadcrumb-item></el-breadcrumb-item>
+                </el-breadcrumb>
+            </el-col>
+            </el-row>
         </el-header>
         <el-main style="margin-top: 100px">
             <div>关注用户</div>
             <li v-for="follow in follows" :key="follow.id" style="margin-left: 350px;margin-right: 350px">
                 <div id="blog">
-                    <div>
-                        <h1 style="font-size: 30px">{{follow.followedId}}</h1>
+                    <div v-for="user in users" :key="user.uid">
+                        <h1 v-if="user.uid==follow.followedId" style="font-size: 30px">{{user.username}}</h1>
                     </div>
                 </div>
             </li>
@@ -69,9 +78,23 @@
                     followedId:"",
                 }],
 
-                fav:[{
+                users1:[{
+                    uid:"",
+                    nickname:"",
+                    username:"",
+                }, {
+                        uid:"",
+                        nickname:"",
+                        username:"",
+                    }
+                ]
+                ,
+
+                fav:{
                     ss:"",
-                }],
+                    s:"",
+                    sss:"",
+                },
 
             }
         },
@@ -83,15 +106,40 @@
                     }
 
                 })
-
             },
+            show1(){
+                axios.get("/user/selectAll1").then(res=>{
+                    if(res.data.code==200){
+                        this.users=res.data.data;
+                        this.show();
+                        var len=this.follows.length;
+                        var l=this.users.length;
+                        this.fav.ss=len;
+                        this.fav.s=l;
+                        var i=0
+                        var j=0
+                        for(i;i<=len;i++){
+                            for(j;j<=l;j++){
+                                if(this.follows[i].followedId==this.users[j].uid){
+                                    this.users1[i].username=this.users[j].username
+                                    this.users1[i].uid=this.users[j].uid
+                                }
+                            }
+                        }
 
-
-
+                    }
+                })
+            },
+            show2(){
+                this.show1()
+                this.fav.sss=this.users1.length
+            }
         },
 
         created(){
             this.show();
+            this.show1();
+            this.show2();
         }
 
 

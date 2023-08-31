@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectAll1(Integer uid) {
-        return userMapper.selectAll1(uid);
+    public List<User> selectAll1() {
+        return userMapper.selectAll1();
     }
 }

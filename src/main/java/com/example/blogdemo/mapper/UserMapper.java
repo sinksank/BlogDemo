@@ -1,5 +1,6 @@
 package com.example.blogdemo.mapper;
 
+import com.example.blogdemo.pojo.Article;
 import com.example.blogdemo.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,5 +16,5 @@ public interface UserMapper {
 
     User selectAll(Integer uid);
 
-    User selectAll1(Integer uid);
+    List<User> selectAll1();
 }

@@ -92,7 +92,7 @@
             },
             methods:{
                 select(){
-                    axios.post("/article/selectAll",this.queryString).then(res => {
+                    axios.post("/article/selectAll2",this.queryString).then(res => {
                         this.articles = res.data.data;
                     })
                 },

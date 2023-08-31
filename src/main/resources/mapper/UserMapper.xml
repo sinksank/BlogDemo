@@ -25,6 +25,5 @@
     <select id="selectAll1" resultMap="UserMap">
         select *
         from user
-        where uid = #{uid}
     </select>
 </mapper>

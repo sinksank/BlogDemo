@@ -32,6 +32,15 @@
 <div id="app">
     <el-container>
         <el-header>
+            <el-row>
+                <el-col :span="6">
+                    <el-breadcrumb separator=" ">
+                        <el-breadcrumb-item :to="{ path: '/' }"><a href="index.html">首页</a></el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/' }"><a href="MyInfo.html">个人中心</a></el-breadcrumb-item>
+                        <el-breadcrumb-item></el-breadcrumb-item>
+                    </el-breadcrumb>
+                </el-col>
+            </el-row>
         </el-header>
         <el-main style="margin-top: 100px">
             <div>收藏文章</div>

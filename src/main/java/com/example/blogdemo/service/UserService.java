@@ -13,5 +13,5 @@ public interface UserService {
     void add(User user);
     User selectAll(Integer uid);
 
-    User selectAll1(Integer uid);
+    List<User> selectAll1();
 }

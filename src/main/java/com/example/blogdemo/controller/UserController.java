@@ -77,6 +77,15 @@ public class UserController {
         }
     }
 
-
+    @RequestMapping("/selectAll1")
+    public Result selectAll1(){
+        try {
+            List<User> users =userService.selectAll1();
+            return new Result(200,"查询成功",users);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(500,"查询失败",e);
+        }
+    }
 
 }
